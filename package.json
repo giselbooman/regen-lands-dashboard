@@ -9,9 +9,12 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "i18next": "^25.8.13",
+    "maplibre-gl": "^5.19.0",
     "next": "16.1.6",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "react-i18next": "^16.5.4"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
