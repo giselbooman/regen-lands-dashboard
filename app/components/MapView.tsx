@@ -204,14 +204,14 @@ export function MapView({
             type: 'raster' as const,
             tiles: [
               'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-            ],
+            ] as string[],
             tileSize: 256,
             attribution: 'Tiles © Esri',
             maxzoom: 19,
           },
         },
         layers: [{ id: 'esri', type: 'raster' as const, source: 'esri' }],
-      } as const);
+      });
 
       map = new ml.Map({ container: containerRef.current, style, center: [0, 20], zoom: 2 });
       mapRef.current = map;
