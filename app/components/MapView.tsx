@@ -194,7 +194,7 @@ export function MapView({
 
       const key   = process.env.NEXT_PUBLIC_STADIA_API_KEY;
       const style = key
-        ? `https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json?api_key=${key}`
+        ? `https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json?api_key=${key}`
         : { version: 8 as const, glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf', sources: { osm: { type: 'raster' as const, tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'], tileSize: 256, attribution: '© OpenStreetMap', maxzoom: 19 } }, layers: [{ id: 'osm', type: 'raster' as const, source: 'osm' }] };
 
       map = new ml.Map({ container: containerRef.current, style, center: [0, 20], zoom: 2 });
