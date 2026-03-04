@@ -193,9 +193,25 @@ export function MapView({
       if (cancelled || !containerRef.current) return;
 
       const key   = process.env.NEXT_PUBLIC_STADIA_API_KEY;
-      const style = key
-        ? `https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json?api_key=${key}`
-        : { version: 8 as const, glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf', sources: { osm: { type: 'raster' as const, tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'], tileSize: 256, attribution: '© OpenStreetMap', maxzoom: 19 } }, layers: [{ id: 'osm', type: 'raster' as const, source: 'osm' }] };
+      const style =
+  key
+    ? `https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json?api_key=${key}`
+    : ({
+        version: 8 as const,
+        glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
+        sources: {
+          esri: {
+            type: 'raster' as const,
+            tiles: [
+              'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+            ],
+            tileSize: 256,
+            attribution: 'Tiles © Esri',
+            maxzoom: 19,
+          },
+        },
+        layers: [{ id: 'esri', type: 'raster' as const, source: 'esri' }],
+      } as const);
 
       map = new ml.Map({ container: containerRef.current, style, center: [0, 20], zoom: 2 });
       mapRef.current = map;
